@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<style>
+/* Normalize horizontal padding to match top sections */
+body {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 40px;
+}
+
+/* Reduce excessive vertical gaps */
+section, .section, .card, .container {
+    margin-top: 24px !important;
+    margin-bottom: 24px !important;
+}
+
+/* Remove oversized spacer gaps */
+* {
+    max-margin-top: 48px;
+}
+
+/* FORCE consistent flyer sizing for Nelly's List + Alter Ego (and any other cards using .img-shell) */
+.img-shell{
+  width:100%;
+  aspect-ratio: 16 / 9;
+  overflow:hidden;
+  border-radius: 18px;
+}
+.img-shell img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  display:block !important;
+}
+
+</style>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="light only" name="color-scheme"/>
+<title>LA Jewish Events Weekly — Issue 4</title>
+<style>
+  :root{
+    --bg:#f7fbff;
+    --bg2:#ffffff;
+    --ink:#0f172a;
+    --muted:#475569;
+    --muted2:#64748b;
+    --line:#e2e8f0;
+
+    --blue:#2563eb;
+    --sky:#38bdf8;
+    --violet:#7c3aed;
+    --gold:#f59e0b;
+    --green:#16a34a;
+
+    --radius:22px;
+    --radius2:16px;
+    --shadow: 0 22px 60px rgba(37,99,235,.14);
+    --shadow2: 0 14px 34px rgba(2,6,23,.08);
+
+    --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    font-family: var(--font);
+    color: var(--ink);
+    background:
+      radial-gradient(900px 500px at 12% 0%, rgba(56,189,248,.18), transparent 60%),
+      radial-gradient(900px 520px at 88% -10%, rgba(124,58,237,.14), transparent 60%),
+      radial-gradient(800px 560px at 55% 105%, rgba(245,158,11,.14), transparent 55%),
+      linear-gradient(180deg, var(--bg), var(--bg2) 60%);
+  }
+
+  a{ color: inherit; }
+  .wrap{
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 44px 18px 140px;
+  }
+
+  /* Top bar */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom: 14px;
+    padding: 10px 6px;
+    color: var(--muted2);
+    font-size: 13px;
+  }
+  .topbar .pill{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding: 9px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(37,99,235,.18);
+    background: rgba(37,99,235,.06);
+    color: rgba(15,23,42,.80);
+    box-shadow: 0 10px 22px rgba(37,99,235,.08);
+  }
+  .dot{
+    width:8px;height:8px;border-radius:999px;
+    background: var(--green);
+    box-shadow: 0 0 0 4px rgba(22,163,74,.14);
+  }
+
+  /* Hero */
+  .hero{
+    position:relative;
+    border-radius: 28px;
+    overflow:hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(37,99,235,.16);
+    background-image:
+      linear-gradient(135deg, rgba(29,78,216,.85), rgba(37,99,235,.75) 40%, rgba(59,130,246,.65) 70%, rgba(96,165,250,.55)),
+      url('hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color:#fff;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      radial-gradient(rgba(255,255,255,.18) 1px, transparent 1px);
+    background-size: 18px 18px;
+    opacity:.25;
+    pointer-events:none;
+    mix-blend-mode: overlay;
+  }
+  .hero-inner{
+    position:relative;
+    padding: 38px 28px 30px;
+  }
+  .hero h1{
+    margin:0;
+    font-size: 44px;
+    letter-spacing:-0.03em;
+    line-height:1.05;
+  }
+  .hero .sub{
+    margin-top: 12px;
+    max-width: 64ch;
+    font-size: 17px;
+    opacity:.95;
+    line-height:1.55;
+  }
+  .hero-meta{
+    margin-top: 18px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .chip{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding: 9px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.25);
+    background: rgba(255,255,255,.10);
+    backdrop-filter: blur(10px);
+    font-size: 13px;
+    color: rgba(255,255,255,.92);
+  }
+
+  /* Memo */
+  .memo{
+    margin-top: 16px;
+    background: #ffffff;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow2);
+    overflow:hidden;
+  }
+  .memo-bar{
+    background: linear-gradient(90deg, rgba(245,158,11,.18), rgba(56,189,248,.12), rgba(124,58,237,.10));
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(15,23,42,.06);
+    font-size: 13px;
+    color: rgba(15,23,42,.72);
+  }
+  .memo-body{
+    padding: 18px 18px 16px;
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: rgba(15,23,42,.86);
+  }
+  .sig{
+    margin-top: 12px;
+    color: rgba(15,23,42,.78);
+    font-weight: 600;
+  }
+
+  /* Sections */
+  .section{
+    margin-top: 34px;
+  }
+  .section-title{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom: 14px;
+  }
+  .section-title h2{
+    margin:0;
+    font-size: 16px;
+    letter-spacing:.16em;
+    text-transform: uppercase;
+    color: rgba(37,99,235,.92);
+  }
+  .section-title .hint{
+    font-size: 13px;
+    color: var(--muted2);
+  }
+  .divider{
+    height:1px;
+    background: linear-gradient(90deg, transparent, rgba(2,6,23,.12), transparent);
+    margin: 16px 0 0;
+  }
+
+  /* Cards grid */
+  .grid{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  @media (min-width: 824px){
+    .grid.two{ grid-template-columns: 1.25fr .75fr; }
+    .grid.cards{ grid-template-columns: 1fr 1fr; }
+  }
+
+  .card{
+    background:#fff;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow2);
+    padding: 18px;
+    position:relative;
+    overflow:hidden;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 18px 42px rgba(2,6,23,.10);
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    inset:-1px;
+    background:
+      radial-gradient(520px 120px at 0% 0%, rgba(56,189,248,.22), transparent 60%),
+      radial-gradient(520px 120px at 100% 0%, rgba(124,58,237,.16), transparent 60%),
+      radial-gradient(520px 140px at 40% 110%, rgba(245,158,11,.16), transparent 62%);
+    pointer-events:none;
+  }
+  .card > *{ position:relative; }
+
+  .label-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom: 10px;
+  }
+  .tag{
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(15,23,42,.10);
+    background: rgba(15,23,42,.03);
+    color: rgba(15,23,42,.74);
+  }
+  .tag.featured{
+    border-color: rgba(22,163,74,.22);
+    background: rgba(22,163,74,.08);
+    color: rgba(15,23,42,.80);
+  }
+  .tag.purim{
+    border-color: rgba(245,158,11,.26);
+    background: rgba(245,158,11,.10);
+  }
+  .tag.westla{
+    border-color: rgba(37,99,235,.22);
+    background: rgba(37,99,235,.08);
+  }
+  .tag.hollywood{
+    border-color: rgba(124,58,237,.22);
+    background: rgba(124,58,237,.08);
+  }
+
+  .card h3{
+    margin:0 0 6px;
+    font-size: 20px;
+    letter-spacing:-0.02em;
+    line-height:1.25;
+  }
+  .meta{
+    margin: 0 0 10px;
+    color: var(--muted2);
+    font-size: 13px;
+  }
+  .desc{
+    margin:0 0 14px;
+    color: rgba(15,23,42,.80);
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+  .facts{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 8px;
+    margin:0;
+    padding:0;
+    list-style:none;
+    color: rgba(15,23,42,.72);
+    font-size: 13px;
+  }
+  .facts li{
+    padding: 8px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(15,23,42,.08);
+    background: rgba(15,23,42,.02);
+  }
+
+  .btns{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top: 14px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding: 11px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(37,99,235,.22);
+    background: rgba(37,99,235,.08);
+    color: rgba(15,23,42,.86);
+    text-decoration:none;
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+  .btn.primary{
+    background: linear-gradient(135deg, rgba(37,99,235,.96), rgba(59,130,246,.92));
+    color: #fff;
+    border-color: rgba(37,99,235,.30);
+  }
+  .btn.gold{
+    background: linear-gradient(135deg, rgba(245,158,11,.95), rgba(251,191,36,.92));
+    color: #1f2937;
+    border-color: rgba(245,158,11,.30);
+  }
+  .btn.ghost{
+    background: transparent;
+    border-color: rgba(15,23,42,.12);
+    color: rgba(15,23,42,.78);
+  }
+
+  /* Image placeholders */
+  .img{
+    border-radius: 18px;
+    border: 1px dashed rgba(15,23,42,.20);
+    background:
+      linear-gradient(135deg, rgba(56,189,248,.10), rgba(124,58,237,.08), rgba(245,158,11,.10));
+    height: 160px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color: rgba(15,23,42,.62);
+    font-size: 13px;
+    padding: 10px;
+    margin-bottom: 12px;
+  }
+
+  /* Callouts */
+  .callout{
+    background: linear-gradient(135deg, rgba(22,163,74,.10), rgba(56,189,248,.10));
+    border: 1px solid rgba(22,163,74,.18);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow2);
+  }
+  .callout h3{
+    margin: 0 0 6px;
+    font-size: 16px;
+  }
+  .callout p{
+    margin:0;
+    color: rgba(15,23,42,.78);
+    line-height:1.6;
+    font-size: 14.5px;
+  }
+
+  /* Footer */
+  .footer{
+    margin-top: 44px;
+    text-align:center;
+    color: rgba(15,23,42,.55);
+    font-size: 12.5px;
+    line-height: 1.7;
+  }
+  .footer a{
+    color: rgba(15,23,42,.66);
+    text-underline-offset: 3px;
+  }
+
+  /* Reduce motion */
+  @media (prefers-reduced-motion: reduce){
+    .card, .card:hover{ transition:none; transform:none; }
+  }
+
+  /* ===== Design polish + motion (Phase 3) ===== */
+  :root{
+    --ease: cubic-bezier(.2,.8,.2,1);
+    --ease2: cubic-bezier(.16,1,.3,1);
+  }
+
+  /* Smooth anchor scroll for future TOC links */
+  html{ scroll-behavior:smooth; }
+
+  /* Subtle global selection */
+  ::selection{ background: rgba(56,189,248,.28); }
+
+  /* Slightly richer hero depth */
+  .hero{
+    transform: translateZ(0);
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:-40px -30px auto -30px;
+    height: 220px;
+    background: radial-gradient(closest-side, rgba(255,255,255,.22), transparent 70%);
+    filter: blur(10px);
+    opacity:.55;
+    pointer-events:none;
+    mix-blend-mode: overlay;
+  }
+
+  /* Card polish */
+  .card{
+    will-change: transform, box-shadow, opacity;
+    transition: transform .22s var(--ease), box-shadow .22s var(--ease), border-color .22s var(--ease), background .22s var(--ease);
+  }
+  .card:hover{
+    transform: translateY(-3px) scale(1.002);
+  }
+
+  /* Button micro-interactions */
+  .btn{
+    position: relative;
+    overflow:hidden;
+    transform: translateZ(0);
+    transition: transform .18s var(--ease), box-shadow .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease);
+  }
+  .btn:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 14px 28px rgba(2,6,23,.10);
+  }
+  .btn:active{
+    transform: translateY(0px) scale(.99);
+  }
+  .btn.primary::after, .btn.gold::after{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    background: radial-gradient(120px 60px at 20% 30%, rgba(255,255,255,.35), transparent 60%),
+                radial-gradient(140px 70px at 80% 70%, rgba(255,255,255,.22), transparent 65%);
+    opacity:0;
+    transition: opacity .22s var(--ease);
+    pointer-events:none;
+  }
+  .btn.primary:hover::after, .btn.gold:hover::after{ opacity:.9; }
+
+  /* Animated tags (very subtle) */
+  .tag{
+    transition: transform .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease);
+  }
+  .card:hover .tag{
+    transform: translateY(-1px);
+  }
+
+  /* Topbar sticky + glass */
+  .topbar{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+    background: rgba(247,251,255,.72);
+    border-bottom: 1px solid rgba(15,23,42,.06);
+    padding: 12px 6px;
+    margin: 0 0 14px;
+  }
+
+  /* Scroll  */
+  .{
+    opacity: 0;
+    transform: translateY(10px) scale(.995);
+    transition: opacity .7s var(--ease2), transform .7s var(--ease2);
+  }
+  ..is-visible{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Hero entrance */
+  .hero-inner{
+    animation: heroIn .9s var(--ease2) both;
+  }
+  @keyframes heroIn{
+    from{ opacity:0; transform: translateY(10px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  /* Floating ambient gradient orb */
+  .orb{
+    position: fixed;
+    width: 520px;
+    height: 520px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 30%, rgba(56,189,248,.20), transparent 60%),
+                radial-gradient(circle at 70% 70%, rgba(124,58,237,.16), transparent 62%),
+                radial-gradient(circle at 50% 80%, rgba(245,158,11,.12), transparent 65%);
+    filter: blur(10px);
+    opacity: .55;
+    z-index: 0;
+    pointer-events:none;
+    left: -180px;
+    top: 22%;
+    animation: drift 10s var(--ease2) infinite alternate;
+  }
+  @keyframes drift{
+    from{ transform: translate(0,0) scale(1); }
+    to{ transform: translate(60px,-40px) scale(1.03); }
+  }
+
+  /* Reduce motion preference */
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .orb{ display:none; }
+    .hero-inner{ animation:none; }
+    .{ transition:none; transform:none; opacity:1; }
+    .btn, .card, .tag{ transition:none; }
+  }
+
+</style>
+<script async="" src="https://elfsightcdn.com/platform.js"></script>
+<style id="widget-scrollable-style">
+.elf-widget-scroll{
+  scroll-behavior:smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(37,99,235,.35) rgba(15,23,42,.06);
+}
+.elf-widget-scroll::-webkit-scrollbar{ width: 10px; }
+.elf-widget-scroll::-webkit-scrollbar-track{ background: rgba(15,23,42,.05); border-radius: 999px; }
+.elf-widget-scroll::-webkit-scrollbar-thumb{ background: rgba(37,99,235,.35); border-radius: 999px; }
+</style>
+<style>
+@media (max-width: 640px){
+  .wrap{ padding: 18px 14px 110px; }
+  .hero-inner{ padding: 28px 18px 22px; }
+  .hero h1{ font-size: 34px; }
+  .section-title{ align-items:flex-start; }
+  .section-title .hint{ font-size: 13px; max-width: 110px; text-align:right; }
+  .btns{ display:flex; flex-wrap:wrap; gap:10px; }
+  .btn{ width:auto; }
+}
+</style>
+<style id="compact-elf-widget-fix">
+/* Let Elfsight render its full internal feed while the outer shell handles scrolling */
+.elfsight-app-cfab7fc8-bb34-45e0-a094-e14966c3df35{
+  min-height: 0 !important;
+  max-height: none !important;
+  height: auto !important;
+  overflow: visible !important;
+  display: block !important;
+}
+@media (max-width: 640px){
+  .elfsight-app-cfab7fc8-bb34-45e0-a094-e14966c3df35{
+    min-height: 0 !important;
+    max-height: none !important;
+    height: auto !important;
+  }
+}
+</style>
+<style id="final-layout-fix">
+/* Final layout polish */
+.card, .memo, .hero-inner, .topbar { box-sizing: border-box; }
+.img-shell { width: 100%; overflow: hidden; border-radius: 18px; }
+.img-shell img { display:block; width:100%; height:auto; object-fit:cover; }
+.section .card { overflow:hidden; }
+.section .card > .img-shell + h3 { margin-top: 6px; }
+
+/* Spotlight spacing */
+.section .card .img-shell + h3,
+.section .card .img-shell + .tag { margin-top: 0; }
+
+/* Prevent giant empty gaps caused by hidden placeholders/custom blocks */
+.section .card [style*="display:none"] { max-height:0 !important; min-height:0 !important; padding:0 !important; margin:0 !important; overflow:hidden !important; }
+.section .card div[style*="min-height:260px"][style*="background:"] { display:none !important; }
+
+/* Better responsive spacing */
+@media (min-width: 900px){
+  .wrap { max-width: 1280px; }
+  .section { margin-top: 34px; }
+}
+@media (max-width: 640px){
+  .wrap { padding: 16px 14px 96px !important; }
+  .section { margin-top: 24px !important; }
+  .card { padding: 16px !important; }
+  .topbar { gap: 10px !important; }
+  .topbar > div:last-child { font-size: 13px !important; text-align: right; }
+  .section-title { gap: 10px !important; }
+  .section-title .hint { font-size: 13px !important; max-width: 112px !important; text-align: right; }
+  .btns { flex-wrap: wrap !important; gap: 10px !important; }
+  .btn { width: auto !important; }
+}
+</style>
+<style>
+.wrap{max-width:920px;padding:34px 18px 120px;}
+.topbar{margin-bottom:18px;}
+.section{margin-top:30px;}
+.section-title{margin-bottom:14px;}
+.section-title h2{font-size:16px;letter-spacing:.17em;}
+.section-title .hint{font-size:13px;color:#64748b;}
+.card,.callout{padding:18px;border-radius:22px;}
+.img-shell{width:100%;overflow:hidden;border-radius:18px;}
+.img-shell img{width:100% !important;height:auto !important;display:block;object-fit:cover;}
+.btns{display:flex;flex-wrap:wrap;gap:10px;}
+@media (max-width:640px){
+ .wrap{padding:18px 14px 96px;}
+ .section{margin-top:24px;}
+ .card,.callout{padding:16px;}
+ .section-title{align-items:flex-end;}
+ .section-title .hint{max-width:120px;text-align:right;}
+}
+</style>
+<style id="featured-card-fix">
+.section .card .img-shell{display:block;width:100%;overflow:hidden;border-radius:18px;}
+.section .card .img-shell img{display:block;width:100%;height:auto;max-height:none !important;object-fit:contain;}
+.section .card > h3,
+.section .card > .desc,
+.section .card > .facts,
+.section .card > .btns{position:relative;display:block;}
+</style>
+
+
+<style id="elf-widget-scroll-fix">
+.elf-widget-scroll{
+  height: 420px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  border-radius: 14px !important;
+}
+.elf-widget-scroll .elfsight-app-cfab7fc8-bb34-45e0-a094-e14966c3df35{
+  min-height: 420px !important;
+  display: block !important;
+}
+@media (max-width: 640px){
+  .elf-widget-scroll{
+    height: 390px !important;
+  }
+  .elf-widget-scroll .elfsight-app-cfab7fc8-bb34-45e0-a094-e14966c3df35{
+    min-height: 390px !important;
+  }
+}
+</style>
+
+
+<style id="v28-fixes">
+.elf-widget-scroll{
+  scrollbar-width: thin;
+  scrollbar-color: rgba(37,99,235,.35) rgba(15,23,42,.06);
+}
+.elf-widget-scroll::-webkit-scrollbar{ width:10px; }
+.elf-widget-scroll::-webkit-scrollbar-track{ background: rgba(15,23,42,.05); border-radius:999px; }
+.elf-widget-scroll::-webkit-scrollbar-thumb{ background: rgba(37,99,235,.35); border-radius:999px; }
+
+.section .card .img-shell{
+  width:100%;
+  overflow:hidden;
+  border-radius:18px;
+}
+.section .card .img-shell img{
+  width:100% !important;
+  height:auto !important;
+  display:block !important;
+}
+
+@media (min-width: 900px){
+  .wrap{ max-width: 980px !important; }
+  .elf-widget-scroll{ height: 420px !important; }
+}
+@media (max-width: 640px){
+  .elf-widget-scroll{ height: 390px !important; }
+}
+</style>
+
+</head>
+<body>
+<div aria-hidden="true" class="orb"></div>
+<div class="wrap">
+<div class="topbar">
+<div class="pill"><span class="dot"></span> Issue 4 • LA Jewish Events Weekly</div>
+<div>April 14, 2026 • Los Angeles, CA</div>
+</div>
+<section class="hero">
+<div class="hero-inner">
+<h1>LA Jewish Events Weekly</h1>
+<div class="sub">
+          A bright, curated pulse of Jewish life across Los Angeles — built to replace endless scrolling with one clean weekly brief.
+        </div>
+<div class="hero-meta">
+<div class="chip">Read time: ~3 minutes</div>
+<div class="chip">This week in LA</div>
+<div class="chip">New: Community Board</div>
+</div>
+</div>
+</section>
+<!-- PHASE 3 OFFICIAL SPONSOR SECTION -->
+<section aria-label="Editor memo" class="memo">
+<div class="memo-bar">A note from Andrew</div>
+<div class="memo-body"><p>Hope everyone had a great Passover — and somehow, 2026 is already flying by.</p><p>April is packed with Jewish events across Los Angeles, from thoughtful speaker nights and community gatherings to high-energy celebrations and Shabbat experiences with real soul.</p><p>Below are a few standout picks to keep on your radar as the month keeps moving.</p><div class="sig">— Andrew</div></div>
+</section>
+
+<section class="section">
+  <div class="section-title">
+    <h2>Featured Event</h2>
+    <div class="hint">This week’s standout</div>
+  </div>
+  <article class="card">
+    <div class="tag featured">Featured</div>
+    <div class="img-shell" style="margin-bottom:12px;"><img src="light-gathering.jpg" alt="Light Gathering: Shabbat &amp; Sound Healing DTLA Vibes flyer"/></div>
+    <h3>Light Gathering: Shabbat &amp; Sound Healing DTLA Vibes</h3>
+    <p class="desc">A modern Shabbat gathering in DTLA blending candle lighting, community connection, dinner, and a guided sound healing journey to close the night. Expect a warm loft setting, intentional energy, and a softer Friday-night vibe.</p>
+    <ul class="facts">
+      <li>Friday, April 17</li>
+      <li>6:30–10:00 PM</li>
+      <li>DTLA / 90021</li>
+      <li>Apps • Dinner • Sound Healing</li>
+    </ul>
+    <div class="btns">
+      <a class="btn primary" href="https://www.kinlia.com/events/32089/loft-home-space-address-given-to-confirmed-attendees-1-day-prior/light-gathering-shabbat-and-sound-healing-dtla-vibes" target="_blank" rel="noopener">RSVP</a>
+      <a class="btn ghost" href="https://www.kinlia.com/events/32089/loft-home-space-address-given-to-confirmed-attendees-1-day-prior/light-gathering-shabbat-and-sound-healing-dtla-vibes" target="_blank" rel="noopener">Details</a>
+    </div>
+  </article>
+</section>
+<section class="section"><div class="section-title"><h2>Community Happenings</h2><div class="hint">4 strong picks</div></div><div class="grid cols-2"><article class="card">
+<div class="tag">Speaker Night</div>
+<div class="img-shell" style="margin-bottom:12px;"><img src="sinai-atid-ajc.jpg" alt="Sinai Temple ATID x AJC ACCESS flyer"/></div>
+<h3>Sinai Temple ATID x AJC ACCESS — Iran, Israel, the Past and the Jewish Future</h3>
+<p class="desc">An engaging young professionals conversation exploring Iranian Jewish history, diaspora identity, Israel, and the present Middle East moment — featuring Dr. Saba Soomekh.</p>
+<ul class="facts">
+<li>Thursday, April 16</li>
+<li>7:00–8:30 PM</li>
+<li>Young professionals, ages 21–40</li>
+<li>Talk + community night</li>
+</ul>
+<div class="btns">
+<a class="btn primary" href="https://donate.ajc.org/event/ajc-access-los-angeles-iran-israel-the-past-and-the-jewish-future/e778425" rel="noopener" target="_blank">RSVP</a>
+<a class="btn ghost" href="https://donate.ajc.org/event/ajc-access-los-angeles-iran-israel-the-past-and-the-jewish-future/e778425" rel="noopener" target="_blank">Details</a>
+</div>
+</article><article class="card"><div class="tag">Yom Ha’atzmaut</div><div class="img-shell" style="margin-bottom:12px;"><img src="plus972-berlin.jpg" alt="+972 Events Yom Ha'atzmaut 78 Independence Night flyer"/></div><h3>+972 Events — Yom Ha'atzmaut 78 Independence Party @ The Community Berlin LA</h3><p class="desc">A high-energy Israeli Independence celebration with Ben Vardi, a packed room, and big community-night energy in North Hollywood.</p><ul class="facts"><li>Thursday, April 23</li><li>The Community Berlin, North Hollywood</li><li>Music by Ben Vardi</li><li>Tickets from $25.19</li></ul><div class="btns"><a class="btn primary" href="https://posh.vip/e/yom-haatzmaut-78-independance-party-the-community-berlin-la?t=laj" rel="noopener" target="_blank">Buy Tickets</a><a class="btn ghost" href="https://posh.vip/e/yom-haatzmaut-78-independance-party-the-community-berlin-la?t=laj" rel="noopener" target="_blank">Details</a></div></article><article class="card"><div class="tag">Culture</div><div class="img-shell" style="margin-bottom:12px;"><img src="mishkon-stamp-thief.jpg" alt="Mishkon Tephilo Stamp Thief flyer"/></div><h3>Mishkon Tephilo — Stamp Thief</h3><p class="desc">A Mishkon Tephilo cultural pick worth having on your radar this month. Open the event page for full program details and RSVP information.</p><ul class="facts"><li>Featured April pick</li><li>Mishkon Tephilo</li><li>Culture / community event</li><li>See event page for details</li></ul><div class="btns"><a class="btn primary" href="https://www.mishkon.org/event/Stamp-Thief.html" rel="noopener" target="_blank">RSVP</a><a class="btn ghost" href="https://www.mishkon.org/event/Stamp-Thief.html" rel="noopener" target="_blank">Details</a></div></article><article class="card"><div class="tag">Dating</div><div class="img-shell" style="margin-bottom:12px;"><img alt="Jewish Date Night virtual speed dating flyer" src="jewish-date-night.jpg"/></div><h3>Jewish Date Night — Virtual Speed Dating Night</h3><p class="desc">A curated virtual dating experience with 7 speed dates in 1 hour — built for Jewish singles who want something more intentional than loud bars, endless texting, or guessing who is actually serious.</p><ul class="facts"><li>Thursday, April 16</li><li>6:00 PM PT / 9:00 PM ET</li><li>Online</li><li>$25 general / $20 early bird</li></ul><div class="btns"><a class="btn primary" href="https://datenight.ai/lajm" rel="noopener" target="_blank">Save Your Spot</a><a class="btn ghost" href="https://datenight.ai/lajm" rel="noopener" target="_blank">Details</a></div>
+</div></section>
+<section class="section">
+  <div class="section-title">
+    <h2>Explore More Events</h2>
+    <div class="hint">Live LA Jewish Events Calendar</div>
+  </div>
+  <div class="card">
+    <p class="desc" style="margin-bottom:14px;">🎯 Can’t decide what to do this week? Scroll a few more live events below. This mini feed is sized so about 2–3 events show at once.</p>
+    <div class="elf-widget-frame" style="padding:16px;border-radius:18px;border:1px solid rgba(15,23,42,.08);background:linear-gradient(135deg, rgba(56,189,248,.08), rgba(124,58,237,.06), rgba(245,158,11,.08));">
+      <div class="elf-widget-scroll" style="height:420px;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;border-radius:14px;background:#fff;">
+        <div class="elfsight-app-cfab7fc8-bb34-45e0-a094-e14966c3df35" data-elfsight-app-lazy></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+<div class="section-title">
+<h2>Community Spotlight</h2>
+<div class="hint">COPOLA Spotlight</div>
+</div>
+<article class="card">
+<div class="tag">Spotlight</div>
+<div class="img-shell" style="margin-bottom:14px;"><img alt="COPOLA by Ben Rose community spotlight image" src="copola-community-spotlight.jpg"/></div>
+<h3>COPOLA by Ben Rose</h3>
+<p class="desc">A community committed to conscious change, COPOLA creates relaxed, timeless luxury with sustainability at the core. The brand focuses on recycling, upcycling, circular fashion, and reducing waste across the business — all while building intentionally designed pieces for purpose-driven explorers and adventurers.</p>
+<ul class="facts">
+<li>Conscious change</li>
+<li>Recycling + upcycling</li>
+<li>Circular fashion mission</li>
+<li>Use code LAJ15off for 15% off 😍</li>
+</ul>
+<div class="btns">
+<a class="btn primary" href="https://copala.com" rel="noopener" target="_blank">Shop COPOLA</a>
+<a class="btn ghost" href="https://copala.com" rel="noopener" target="_blank">Use Code: LAJ15off</a>
+</div>
+</article>
+</section>
+<section class="section">
+<div class="section-title">
+<h2>Stay Connected</h2>
+<div class="hint"></div>
+</div>
+<div class="card">
+<p class="desc" style="margin-bottom:10px;">
+          Website, newsletter sign‑up, and the WhatsApp community:
+        </p>
+<div class="btns">
+<a class="btn primary" href="https://calendar.google.com/calendar/embed?src=lajevents.inbox%40gmail.com" rel="noopener" target="_blank">Website</a>
+<a class="btn ghost" href="https://lajewishevents.com/newsletter" rel="noopener" target="_blank">Newsletter Sign‑Up</a>
+<a class="btn ghost" href="https://chat.whatsapp.com/KXdXuxWW1mTJLp95om0HmL?mode=gi_t" rel="noopener" target="_blank">WhatsApp</a>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="section-title">
+<h2>Share LA Jewish Events</h2>
+<div class="hint">Help more people find good events</div>
+</div>
+<div class="card" style="text-align:center;">
+<h3 style="margin-bottom:8px;">💬 Know someone who should see these events?</h3>
+<p class="desc" style="max-width:620px;margin:0 auto 14px;">
+          Send them this week’s LA Jewish Events roundup 👇
+        </p>
+<div class="btns" style="justify-content:center;">
+<a class="btn primary" href="mailto:?subject=Jewish%20events%20happening%20in%20LA%20this%20week&amp;body=Thought%20you%20might%20enjoy%20this.%0D%0A%0D%0ALots%20of%20good%20Jewish%20events%20happening%20around%20LA%20this%20week:%0D%0A%0D%0A%5Bnewsletter%20link%5D%0D%0A%0D%0A%E2%80%93%20Andrew%0D%0ALA%20Jewish%20Events">Send to a Friend</a>
+<a class="btn ghost" href="#" onclick="copyNewsletterLink(); return false;">Copy Newsletter Link</a>
+<a class="btn ghost" href="mailto:lajevents.inbox@gmail.com?subject=Event%20Submission">Submit Event</a>
+</div>
+<p class="desc" style="margin-top:18px; margin-bottom:8px;">
+          👀 <strong>Coming next week</strong>
+</p>
+<p class="desc" style="margin-bottom:14px;">
+          • More April event picks across LA<br/>
+          • Fresh community nights, mixers, and speaker events<br/>
+          • The best Jewish social happenings this spring<br/>
+          • Community Technology updates
+        </p>
+<div class="btns" style="justify-content:center;">
+<a class="btn ghost" href="#" onclick="alert('Map coming soon 😎🔥'); return false;">Map Coming Soon 😎🔥</a>
+</div>
+</div>
+</section>
+<script>
+      function copyNewsletterLink(){
+        const link = window.location.href || '';
+        navigator.clipboard.writeText(link).then(function(){
+          alert('Newsletter link copied!');
+        }).catch(function(){
+          prompt('Copy this newsletter link:', link);
+        });
+      }
+    </script>
+<div class="footer">
+      LA Jewish Events • Los Angeles, CA<br/>
+      Any questions/feedback: <a href='\"mailto:lajevents.inbox@gmail.com\"'>lajevents.inbox@gmail.com</a><br/>
+<a href="mailto:lajevents.inbox@gmail.com?subject=LA%20Jewish%20Events%20Birthright%20Trip">Unsubscribe</a> • <a href="mailto:lajevents.inbox@gmail.com?subject=LA%20Jewish%20Events%20Birthright%20Trip">Manage preferences</a> • <a href="mailto:lajevents.inbox@gmail.com?subject=LA%20Jewish%20Events%20Birthright%20Trip">Forward to a friend</a>
+</div>
+
+<script>
+(() => {
+  const els = Array.from(document.querySelectorAll('.'));
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '60px 0px -10% 0px' });
+
+  els.forEach(el => io.observe(el));
+
+  // Subtle parallax on hero for desktop only
+  const hero = document.querySelector('.hero');
+  if (hero && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    let raf = null;
+    
+    }, { passive: true });
+  }
+})();
+</script>
+</body>
+</html>
